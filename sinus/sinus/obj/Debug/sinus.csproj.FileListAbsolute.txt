@@ -1,0 +1,38 @@
+c:\users\aeronet\documents\visual studio 2013\Projects\sinus\sinus\bin\Debug\sinus.exe.config
+c:\users\aeronet\documents\visual studio 2013\Projects\sinus\sinus\obj\Debug\sinus.csprojResolveAssemblyReference.cache
+c:\users\aeronet\documents\visual studio 2013\Projects\sinus\sinus\obj\Debug\sinus.Form1.resources
+c:\users\aeronet\documents\visual studio 2013\Projects\sinus\sinus\obj\Debug\sinus.Properties.Resources.resources
+c:\users\aeronet\documents\visual studio 2013\Projects\sinus\sinus\obj\Debug\sinus.csproj.GenerateResource.Cache
+c:\users\aeronet\documents\visual studio 2013\Projects\sinus\sinus\bin\Debug\sinus.exe
+c:\users\aeronet\documents\visual studio 2013\Projects\sinus\sinus\bin\Debug\sinus.pdb
+c:\users\aeronet\documents\visual studio 2013\Projects\sinus\sinus\obj\Debug\sinus.exe
+c:\users\aeronet\documents\visual studio 2013\Projects\sinus\sinus\obj\Debug\sinus.pdb
+C:\Users\юзер\Desktop\sinus\sinus\bin\Debug\sinus.exe.config
+C:\Users\юзер\Desktop\sinus\sinus\obj\Debug\sinus.exe
+C:\Users\юзер\Desktop\sinus\sinus\obj\Debug\sinus.pdb
+C:\Users\юзер\Desktop\sinus\sinus\bin\Debug\sinus.exe
+C:\Users\юзер\Desktop\sinus\sinus\bin\Debug\sinus.pdb
+C:\Users\юзер\Desktop\sinus\sinus\obj\Debug\sinus.csprojResolveAssemblyReference.cache
+C:\Users\юзер\Desktop\sinus\sinus\obj\Debug\sinus.Form1.resources
+C:\Users\юзер\Desktop\sinus\sinus\obj\Debug\sinus.Properties.Resources.resources
+C:\Users\юзер\Desktop\sinus\sinus\obj\Debug\sinus.csproj.GenerateResource.Cache
+C:\Users\aeronet\Desktop\Программки\sinus\sinus\bin\Debug\sinus.exe.config
+C:\Users\aeronet\Desktop\Программки\sinus\sinus\obj\Debug\sinus.exe
+C:\Users\aeronet\Desktop\Программки\sinus\sinus\obj\Debug\sinus.pdb
+C:\Users\aeronet\Desktop\Программки\sinus\sinus\bin\Debug\sinus.exe
+C:\Users\aeronet\Desktop\Программки\sinus\sinus\bin\Debug\sinus.pdb
+C:\Users\aeronet\Desktop\Программки\sinus\sinus\obj\Debug\sinus.csprojResolveAssemblyReference.cache
+C:\Users\aeronet\Desktop\Программки\sinus\sinus\obj\Debug\sinus.Form1.resources
+C:\Users\aeronet\Desktop\Программки\sinus\sinus\obj\Debug\sinus.Properties.Resources.resources
+C:\Users\aeronet\Desktop\Программки\sinus\sinus\obj\Debug\sinus.csproj.GenerateResource.Cache
+C:\Users\aeronet\Desktop\Программки УК\sinus\sinus\bin\Debug\sinus.exe.config
+C:\Users\aeronet\Desktop\Программки УК\sinus\sinus\obj\Debug\sinus.exe
+C:\Users\aeronet\Desktop\Программки УК\sinus\sinus\obj\Debug\sinus.pdb
+C:\Users\aeronet\Desktop\Программки УК\sinus\sinus\bin\Debug\points.txt
+C:\Users\aeronet\Desktop\Программки УК\sinus\sinus\bin\Debug\sinus.exe
+C:\Users\aeronet\Desktop\Программки УК\sinus\sinus\bin\Debug\sinus.pdb
+C:\Users\aeronet\Desktop\Программки УК\sinus\sinus\obj\Debug\sinus.csprojResolveAssemblyReference.cache
+C:\Users\aeronet\Desktop\Программки УК\sinus\sinus\obj\Debug\sinus.Form1.resources
+C:\Users\aeronet\Desktop\Программки УК\sinus\sinus\obj\Debug\sinus.Properties.Resources.resources
+C:\Users\aeronet\Desktop\Программки УК\sinus\sinus\obj\Debug\sinus.csproj.GenerateResource.Cache
+C:\Users\aeronet\Desktop\Программки УК\sinus\sinus\bin\Debug\alglibnet2.dll

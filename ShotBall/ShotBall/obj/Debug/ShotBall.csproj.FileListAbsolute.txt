@@ -1,0 +1,9 @@
+c:\users\aeronet\documents\visual studio 2013\Projects\ShotBall\ShotBall\bin\Debug\ShotBall.exe.config
+c:\users\aeronet\documents\visual studio 2013\Projects\ShotBall\ShotBall\bin\Debug\ShotBall.exe
+c:\users\aeronet\documents\visual studio 2013\Projects\ShotBall\ShotBall\bin\Debug\ShotBall.pdb
+c:\users\aeronet\documents\visual studio 2013\Projects\ShotBall\ShotBall\obj\Debug\ShotBall.csprojResolveAssemblyReference.cache
+c:\users\aeronet\documents\visual studio 2013\Projects\ShotBall\ShotBall\obj\Debug\ShotBall.Form1.resources
+c:\users\aeronet\documents\visual studio 2013\Projects\ShotBall\ShotBall\obj\Debug\ShotBall.Properties.Resources.resources
+c:\users\aeronet\documents\visual studio 2013\Projects\ShotBall\ShotBall\obj\Debug\ShotBall.csproj.GenerateResource.Cache
+c:\users\aeronet\documents\visual studio 2013\Projects\ShotBall\ShotBall\obj\Debug\ShotBall.exe
+c:\users\aeronet\documents\visual studio 2013\Projects\ShotBall\ShotBall\obj\Debug\ShotBall.pdb
