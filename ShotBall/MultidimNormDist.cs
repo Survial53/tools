@@ -80,7 +80,7 @@ namespace ShotBall
 
         public List<double> GeneratePoint()
         {
-            int i, j, k;
+            int i, k;
             double alfa1, alfa2;
 
             List<double> matN = new List<double>(size);

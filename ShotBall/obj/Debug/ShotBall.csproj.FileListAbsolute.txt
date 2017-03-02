@@ -7,3 +7,4 @@ c:\users\aeronet\documents\visual studio 2013\Projects\ShotBall\ShotBall\obj\Deb
 c:\users\aeronet\documents\visual studio 2013\Projects\ShotBall\ShotBall\obj\Debug\ShotBall.csproj.GenerateResource.Cache
 c:\users\aeronet\documents\visual studio 2013\Projects\ShotBall\ShotBall\obj\Debug\ShotBall.exe
 c:\users\aeronet\documents\visual studio 2013\Projects\ShotBall\ShotBall\obj\Debug\ShotBall.pdb
+C:\Users\aeronet\Documents\Visual Studio 2013\Projects\ShotBall\ShotBall\obj\Debug\ShotBall.Form2.resources
