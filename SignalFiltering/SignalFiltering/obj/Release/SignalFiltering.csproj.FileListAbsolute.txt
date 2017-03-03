@@ -7,3 +7,13 @@ c:\users\aeronet\documents\visual studio 2013\Projects\SignalFiltering\SignalFil
 c:\users\aeronet\documents\visual studio 2013\Projects\SignalFiltering\SignalFiltering\obj\Release\SignalFiltering.csproj.GenerateResource.Cache
 c:\users\aeronet\documents\visual studio 2013\Projects\SignalFiltering\SignalFiltering\obj\Release\SignalFiltering.exe
 c:\users\aeronet\documents\visual studio 2013\Projects\SignalFiltering\SignalFiltering\obj\Release\SignalFiltering.pdb
+C:\Users\aeronet\Documents\GitHub\tools\SignalFiltering\SignalFiltering\bin\Release\SignalFiltering.exe.config
+C:\Users\aeronet\Documents\GitHub\tools\SignalFiltering\SignalFiltering\obj\Release\SignalFiltering.exe
+C:\Users\aeronet\Documents\GitHub\tools\SignalFiltering\SignalFiltering\obj\Release\SignalFiltering.pdb
+C:\Users\aeronet\Documents\GitHub\tools\SignalFiltering\SignalFiltering\bin\Release\noize.txt
+C:\Users\aeronet\Documents\GitHub\tools\SignalFiltering\SignalFiltering\bin\Release\SignalFiltering.exe
+C:\Users\aeronet\Documents\GitHub\tools\SignalFiltering\SignalFiltering\bin\Release\SignalFiltering.pdb
+C:\Users\aeronet\Documents\GitHub\tools\SignalFiltering\SignalFiltering\obj\Release\SignalFiltering.csprojResolveAssemblyReference.cache
+C:\Users\aeronet\Documents\GitHub\tools\SignalFiltering\SignalFiltering\obj\Release\SignalFiltering.Form1.resources
+C:\Users\aeronet\Documents\GitHub\tools\SignalFiltering\SignalFiltering\obj\Release\SignalFiltering.Properties.Resources.resources
+C:\Users\aeronet\Documents\GitHub\tools\SignalFiltering\SignalFiltering\obj\Release\SignalFiltering.csproj.GenerateResource.Cache

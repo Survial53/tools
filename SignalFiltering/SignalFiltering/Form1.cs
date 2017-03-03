@@ -68,19 +68,24 @@ namespace SignalFiltering
             InitSamples(ref xy);
 
             chart1.Series[0].Points.Clear();
-            for (int i = 0; i < xy.Count; i++)
+          /*  for (int i = 0; i < xy.Count; i++)
             {
                 DrawPoint(xy[i].points, 0);
-            }
+            }*/
 
+            chartBuild(xy, 0);
+
+            
+            
             int window = Convert.ToInt32(textBox1.Text);
 
             double[] F = new double[Y.Length];
-            Smooth(ref Y, ref F, Y.Length, window);
+            //SmoothWindow(ref Y, ref F, Y.Length, window);
+            SmoothMedian(ref Y, ref F, Y.Length, window);
             chartBuild(X, F, 1);
         }
 
-        public void Smooth(ref double[] input, ref double[] output, int n, int window)
+        public void SmoothWindow(ref double[] input, ref double[] output, int n, int window)
         {
             int i, j, z, k1, k2, hw;
             double tmp;
@@ -118,14 +123,69 @@ namespace SignalFiltering
             }
         }
 
+        public void SmoothMedian(ref double[] input, ref double[] output, int n, int window)
+        {
+            int i, j, z, k1, k2, hw;
+
+            List<double> span;
+
+            if (window % 2 == 0) window++;
+            hw = (window - 1) / 2;
+            output[0] = input[0];
+
+            for (i = 1; i < n; i++)
+            {
+                //tmp = 0;
+                if (i < hw)
+                {
+                    k1 = 0;
+                    k2 = 2 * i;
+                    z = k2 + 1;
+                }
+                else if ((i + hw) > (n - 1))
+                {
+                    k1 = i - n + i + 1;
+                    k2 = n - 1;
+                    z = k2 - k1 + 1;
+                }
+                else
+                {
+                    k1 = i - hw;
+                    k2 = i + hw;
+                    z = window;
+                }
+
+                span = new List<double>(z);
+                for (j = k1; j <= k2; j++)
+                {
+                    //tmp = tmp + input[j];
+                    span.Add(input[j]);
+                }
+                span.Sort();
+                int index = span.Count / 2 + 1;
+                if (span.Count == index)
+                    index = 0;
+                output[i] = span[index];
+            }
+        }
+
         public void chartBuild(double[] x, double[] y, int series)
         {
             chart1.Series[series].Points.Clear();
-            //chart1.Series[series].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastPoint;
 
             for (int j = 0; j < x.Count(); j++)
             {
                 chart1.Series[series].Points.AddXY(x[j], y[j]);
+            }
+        }
+
+        public void chartBuild(List<AnyPoint> pts, int series)
+        {
+            chart1.Series[series].Points.Clear();
+
+            for (int j = 0; j < pts.Count(); j++)
+            {
+                chart1.Series[series].Points.AddXY(pts[j].points[0], pts[j].points[1]);
             }
         }
 
