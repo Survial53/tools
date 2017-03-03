@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,9 +14,15 @@ namespace SignalFiltering
 {
     enum Filters
     {
-        WIND,
-        MED,
-        EXP,
+        WINDOW,
+        MEDIAN,
+        EXPONENT,
+    }
+
+    enum Data
+    {
+        WINDOW,
+        ALPHA,
     }
 }
 
@@ -27,6 +34,7 @@ namespace SignalFiltering
         private Filters switcher;
         private double[] X;
         private double[] Y;
+        private int size;
         
         public Form1()
         {
@@ -43,8 +51,62 @@ namespace SignalFiltering
             chart1.ChartAreas[0].AxisY.Crossing = 0;
             chart1.ChartAreas[0].AxisX.IsLabelAutoFit = true;
             chart1.Legends[0].Enabled = false;
-            textBox1.Text = "10";
+            textBox1.Text = "100";
             f1.Checked = true;
+            textBox2.Enabled = false;
+            textBox2.Text = "0,02";
+        }
+
+
+        private bool InitSamples(ref List<AnyPoint> pts)
+        {
+            int i;
+            List<double> x = new List<double>();
+            List<double> y = readDAta(path);
+            List<double> xy;
+            double step = 0;
+            size = y.Count;
+            for (i = 0; i < size; i++)
+            {
+                x.Add(i + step);
+                step += 0.5;
+                xy = new List<double>();
+                xy.Add(x[i]);
+                xy.Add(y[i]);
+                pts.Add(new AnyPoint(xy));
+            }
+            X = x.ToArray();
+            return true;
+        }
+
+        private bool CheckValid(double value, Data d)
+        {
+            switch (d)
+            {
+                case Data.WINDOW:
+                    {
+                        if (value >= size)
+                        {
+                            statusBar.Items.Add("Невенрное значение Window");
+                            return false;
+                        }
+                        return true;
+                    }
+                case Data.ALPHA:
+                    {
+                        if (switcher != Filters.EXPONENT) return true;
+                        if (value < 0 || value > 1.0)
+                        {
+                            statusBar.Items.Add("Неверное Значение Alpha");
+                            return false;
+                        }
+                        return true;
+                    }
+                default:
+                    {
+                        return false; 
+                    }
+            }
         }
 
         public List<double> readDAta(string s)
@@ -64,25 +126,50 @@ namespace SignalFiltering
 
         private void button1_Click(object sender, EventArgs e)
         {
+            statusBar.Items.Clear();
             List<AnyPoint> xy = new List<AnyPoint>();
             InitSamples(ref xy);
-
-            chart1.Series[0].Points.Clear();
-          /*  for (int i = 0; i < xy.Count; i++)
-            {
-                DrawPoint(xy[i].points, 0);
-            }*/
-
-            chartBuild(xy, 0);
-
-            
-            
-            int window = Convert.ToInt32(textBox1.Text);
-
             double[] F = new double[Y.Length];
-            //SmoothWindow(ref Y, ref F, Y.Length, window);
-            SmoothMedian(ref Y, ref F, Y.Length, window);
-            chartBuild(X, F, 1);
+            int window = Convert.ToInt32(textBox1.Text);
+            double alpha = Convert.ToDouble(textBox2.Text);
+            if (!CheckValid(window, Data.WINDOW) || !CheckValid(alpha, Data.ALPHA))
+                return;
+            button1.Enabled = false;
+            switch (switcher) 
+            {
+                case Filters.WINDOW:
+                    {
+                        SmoothWindow(ref Y, ref F, Y.Length, window);
+                        break;
+                    }
+                case Filters.MEDIAN:
+                    {
+                        SmoothMedian(ref Y, ref F, Y.Length, window);
+                        break;
+                    }
+                case Filters.EXPONENT:
+                    {
+                        SmoothExponent(ref Y, ref F, Y.Length, alpha);
+                        break;
+                    }
+            }
+
+            if (checkBox1.Checked)
+            {
+                ChartForm f = new ChartForm(switcher.ToString());
+                f.Push(xy, 0);
+                f.Push(X, F, 1);
+                f.Show();
+            }
+            else
+            {
+                mode.Text = switcher.ToString();
+                chart1.Series[0].Points.Clear();
+                chartBuild(xy, 0);
+                chartBuild(X, F, 1);  
+            }
+            
+            button1.Enabled = true;
         }
 
         public void SmoothWindow(ref double[] input, ref double[] output, int n, int window)
@@ -128,14 +215,12 @@ namespace SignalFiltering
             int i, j, z, k1, k2, hw;
 
             List<double> span;
-
             if (window % 2 == 0) window++;
             hw = (window - 1) / 2;
             output[0] = input[0];
 
             for (i = 1; i < n; i++)
             {
-                //tmp = 0;
                 if (i < hw)
                 {
                     k1 = 0;
@@ -158,7 +243,6 @@ namespace SignalFiltering
                 span = new List<double>(z);
                 for (j = k1; j <= k2; j++)
                 {
-                    //tmp = tmp + input[j];
                     span.Add(input[j]);
                 }
                 span.Sort();
@@ -169,10 +253,18 @@ namespace SignalFiltering
             }
         }
 
+        public void SmoothExponent(ref double[] input, ref double[] output, int n, double alpha)
+        {
+            int i;
+            for (i = 1; i < n; i++)
+            {
+                output[i] = alpha * input[i] + (1 - alpha) * output[i - 1];
+            }
+        }
+
         public void chartBuild(double[] x, double[] y, int series)
         {
             chart1.Series[series].Points.Clear();
-
             for (int j = 0; j < x.Count(); j++)
             {
                 chart1.Series[series].Points.AddXY(x[j], y[j]);
@@ -182,7 +274,6 @@ namespace SignalFiltering
         public void chartBuild(List<AnyPoint> pts, int series)
         {
             chart1.Series[series].Points.Clear();
-
             for (int j = 0; j < pts.Count(); j++)
             {
                 chart1.Series[series].Points.AddXY(pts[j].points[0], pts[j].points[1]);
@@ -198,53 +289,32 @@ namespace SignalFiltering
                 {
                     case "f1":
                         {
-                            chart1.Series[0].Points.Clear();
-                            chart1.Series[1].Points.Clear();
-                            switcher = Filters.WIND;
+                            switcher = Filters.WINDOW;
                             break;
                         }
                     case "f2":
                         {
-                            chart1.Series[0].Points.Clear();
-                            chart1.Series[1].Points.Clear();
-                            switcher = Filters.MED;
+                            switcher = Filters.MEDIAN;
                             break;
                         }
                     case "f3":
                         {
-                            chart1.Series[0].Points.Clear();
-                            chart1.Series[1].Points.Clear();
-                            switcher = Filters.EXP;
+                            textBox2.Enabled = true;
+                            textBox1.Enabled = false;
+                            switcher = Filters.EXPONENT;
                             break;
                         }
                 }
             }
-        }
-
-        private bool InitSamples(ref List<AnyPoint> pts)
-        {
-            int i;
-            List<double> x = new List<double>(); 
-            List<double> y = readDAta(path);
-            double step = 0;
-            for (i = 0; i < y.Count; i++)
+            else
             {
-                x.Add(i + step);
-                step += 0.5;
+                if (textBox2.Enabled)
+                {
+                    textBox2.Enabled = false;
+                    textBox1.Enabled = true;
+                }
             }
-
-            X = x.ToArray();
-
-            List<double> xy;
-            for (i = 0; i < y.Count; i++)
-            {
-                xy = new List<double>();
-                xy.Add(x[i]);
-                xy.Add(y[i]);
-                pts.Add(new AnyPoint(xy));
-            }
-            
-            return true;
+            statusBar.Items.Clear();
         }
 
         public bool DrawPoint(List<double> xy, int ser)
@@ -256,7 +326,5 @@ namespace SignalFiltering
             }
             return false;
         }
-
-
     }
 }

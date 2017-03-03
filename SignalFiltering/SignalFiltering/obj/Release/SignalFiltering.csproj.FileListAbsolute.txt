@@ -17,3 +17,4 @@ C:\Users\aeronet\Documents\GitHub\tools\SignalFiltering\SignalFiltering\obj\Rele
 C:\Users\aeronet\Documents\GitHub\tools\SignalFiltering\SignalFiltering\obj\Release\SignalFiltering.Form1.resources
 C:\Users\aeronet\Documents\GitHub\tools\SignalFiltering\SignalFiltering\obj\Release\SignalFiltering.Properties.Resources.resources
 C:\Users\aeronet\Documents\GitHub\tools\SignalFiltering\SignalFiltering\obj\Release\SignalFiltering.csproj.GenerateResource.Cache
+C:\Users\aeronet\Documents\GitHub\tools\SignalFiltering\SignalFiltering\obj\Release\SignalFiltering.ChartForm.resources
