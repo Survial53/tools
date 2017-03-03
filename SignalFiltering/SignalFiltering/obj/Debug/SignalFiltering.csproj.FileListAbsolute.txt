@@ -1,0 +1,10 @@
+c:\users\aeronet\documents\visual studio 2013\Projects\SignalFiltering\SignalFiltering\bin\Debug\SignalFiltering.exe.config
+c:\users\aeronet\documents\visual studio 2013\Projects\SignalFiltering\SignalFiltering\bin\Debug\SignalFiltering.exe
+c:\users\aeronet\documents\visual studio 2013\Projects\SignalFiltering\SignalFiltering\bin\Debug\SignalFiltering.pdb
+c:\users\aeronet\documents\visual studio 2013\Projects\SignalFiltering\SignalFiltering\obj\Debug\SignalFiltering.csprojResolveAssemblyReference.cache
+c:\users\aeronet\documents\visual studio 2013\Projects\SignalFiltering\SignalFiltering\obj\Debug\SignalFiltering.Properties.Resources.resources
+c:\users\aeronet\documents\visual studio 2013\Projects\SignalFiltering\SignalFiltering\obj\Debug\SignalFiltering.csproj.GenerateResource.Cache
+c:\users\aeronet\documents\visual studio 2013\Projects\SignalFiltering\SignalFiltering\obj\Debug\SignalFiltering.exe
+c:\users\aeronet\documents\visual studio 2013\Projects\SignalFiltering\SignalFiltering\obj\Debug\SignalFiltering.pdb
+c:\users\aeronet\documents\visual studio 2013\Projects\SignalFiltering\SignalFiltering\bin\Debug\noize.txt
+c:\users\aeronet\documents\visual studio 2013\Projects\SignalFiltering\SignalFiltering\obj\Debug\SignalFiltering.Form1.resources
