@@ -36,3 +36,6 @@ C:\Users\aeronet\Desktop\Программки УК\sinus\sinus\obj\Debug\sinus.F
 C:\Users\aeronet\Desktop\Программки УК\sinus\sinus\obj\Debug\sinus.Properties.Resources.resources
 C:\Users\aeronet\Desktop\Программки УК\sinus\sinus\obj\Debug\sinus.csproj.GenerateResource.Cache
 C:\Users\aeronet\Desktop\Программки УК\sinus\sinus\bin\Debug\alglibnet2.dll
+C:\Users\юзер\Documents\GitHub\tools\sinus\sinus\bin\Debug\sinus.exe.config
+C:\Users\юзер\Documents\GitHub\tools\sinus\sinus\obj\Debug\sinus.exe
+C:\Users\юзер\Documents\GitHub\tools\sinus\sinus\obj\Debug\sinus.pdb
