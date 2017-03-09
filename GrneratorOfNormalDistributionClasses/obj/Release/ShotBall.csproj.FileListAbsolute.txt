@@ -1,0 +1,10 @@
+C:\Users\юзер\Documents\GitHub\tools\ShotBall\bin\Release\ShotBall.exe.config
+C:\Users\юзер\Documents\GitHub\tools\ShotBall\bin\Release\ShotBall.exe
+C:\Users\юзер\Documents\GitHub\tools\ShotBall\bin\Release\ShotBall.pdb
+C:\Users\юзер\Documents\GitHub\tools\ShotBall\obj\Release\ShotBall.csprojResolveAssemblyReference.cache
+C:\Users\юзер\Documents\GitHub\tools\ShotBall\obj\Release\ShotBall.Form1.resources
+C:\Users\юзер\Documents\GitHub\tools\ShotBall\obj\Release\ShotBall.Form2.resources
+C:\Users\юзер\Documents\GitHub\tools\ShotBall\obj\Release\ShotBall.Properties.Resources.resources
+C:\Users\юзер\Documents\GitHub\tools\ShotBall\obj\Release\ShotBall.csproj.GenerateResource.Cache
+C:\Users\юзер\Documents\GitHub\tools\ShotBall\obj\Release\ShotBall.exe
+C:\Users\юзер\Documents\GitHub\tools\ShotBall\obj\Release\ShotBall.pdb
