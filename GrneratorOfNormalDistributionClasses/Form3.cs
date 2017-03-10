@@ -99,20 +99,6 @@ namespace ShotBall
             }
         }
 
-        private List<List<double>> GetZeroMatrix(int size)
-        {
-            List<List<double>> matrix = new List<List<double>>(size);
-            for (int i = 0; i < size; ++i)
-            {
-                matrix.Add(new List<double>(size));
-                for (int j = 0; j < size; ++j)
-                {
-                    matrix[i].Add(0);
-                }
-            }
-            return matrix;
-        }
-
         private List<List<double>> ReadCorrMatrix()
         {
             int size = dataGridView2.ColumnCount;
@@ -189,13 +175,16 @@ namespace ShotBall
             MultidimNormDist target = InitTarget();
             int vectorDimensions = int.Parse(vec.Text);
             int startCount = int.Parse(start.Text);
+            int st = int.Parse(step.Text);
             int endCount = int.Parse(end.Text);
             double probability = double.Parse(prob.Text);
             List<double> math;
             
             List<List<AnyPoint>> samples = new List<List<AnyPoint>>();
 
-            for (int i = startCount; i < endCount; ++i)
+            int x = st;
+
+            for (int i = startCount; i < endCount; i += st)
             {
                 List<AnyPoint> pts = SampleGenerate(i, target);
 
@@ -205,17 +194,99 @@ namespace ShotBall
                     if (rand.NextDouble() <= probability)
                         count++;
                 }
-                DataCalculate(vectorDimensions, i, count, out probability, out math);
-                samples.Add(pts);
+                DataCalculate(vectorDimensions, i, count, pts, out probability, out math);
+                List<double> disp = Dispersion(pts, vectorDimensions);
+                double sum = 0;
+                for (int k = 0; k < vectorDimensions; ++k)
+                {
+                    sum += Math.Pow(math[k], 2);  
+                }
+                chart1.Series[0].Points.AddXY(x, sum);
+               // samples.Add(pts);
+                x += st;
             }
         }
 
-        public void DataCalculate(int vectorDimensions, int vectorCount, int count, out double probability, out List<double> math)
+        public List<double> Dispersion(List<AnyPoint> pts, int vectorDimensions) //несмещенная дисперсия
         {
+            List<double> disp = new List<double>(vectorDimensions);
+            double sumPow = 0.0, sum = 0.0;
+            int n = pts.Count;
 
+            for (int j = 0; j < vectorDimensions; j++)
+            {
+                for (int i = 0; i < n; i++)
+                {
+                    sumPow += Math.Pow(pts[i].points[j], 2);
+                    sum += pts[i].points[j];
+                }
+                disp.Add((double)(sumPow - Math.Pow(sum, 2) / n) / (n - 1));
+            }
+            return disp;
+        }
+
+        public void DataCalculate(int vectorDimensions, int vectorCount, int count, List<AnyPoint> pts, out double probability, out List<double> math)
+        {
             probability = (double)count / vectorCount;
-            math = new List<double>();
+            math = GetZeroList(vectorDimensions);
 
+            for (int i = 0; i < vectorDimensions; i++)
+            {
+                for (int j= 0; j < count; j++)
+                {
+                    math[i] += pts[j].points[i];
+                }
+                math[i] /= count;
+            }
+
+            List<List<double>> corr = GetZeroMatrix(vectorDimensions);
+
+            for (int i = 0; i < vectorDimensions; i++)
+            {
+                double sum = 0;
+                double sum1 = 0;
+                for (int j = 0; j < count; j++)
+                {
+                    sum += Math.Pow(pts[j].points[i], 2);
+                    sum1 += Math.Pow(pts[j].points[i] - math[i], 2);
+                }
+
+                //corr[i][i] = (double)Math.Sqrt(sum / count - Math.Pow(math[i], 2));
+                corr[i][i] = (double)sum1 / (count - 1);
+
+                for (int k = 0; k < i; k++)
+                {
+                    sum = 0;
+                    for (int j = 0; j < count; j++)
+                        sum += (pts[j].points[i] - math[i]) * (pts[j].points[k] - math[k]);
+                    corr[i][k] = sum / count / corr[i][i] / corr[k][k];
+                }
+            }
+            int s = 0;
+        }
+
+        public List<double> GetZeroList(int size)
+        {
+            List<double> lst = new List<double>(size);
+            for (int i = 0; i < size; i++)
+            {
+                lst.Add(0);
+            }
+            return lst;
+        }
+
+        private List<List<double>> GetZeroMatrix(int size)
+        {
+            List<List<double>> matrix = new List<List<double>>(size);
+            for (int i = 0; i < size; ++i)
+            {
+                matrix.Add(new List<double>(size));
+                for (int j = 0; j < size; ++j)
+                {
+                    matrix[i].Add(0);
+                }
+            }
+            return matrix;
         }
     }
 }
