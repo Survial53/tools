@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace ShotBall
 {
@@ -22,6 +23,7 @@ namespace ShotBall
     public partial class Form3 : Form
     {
         public static Random rand = new Random();
+
         public Form3()
         {
             InitializeComponent();
@@ -29,7 +31,7 @@ namespace ShotBall
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            ChartsClear();
         }
 
         private void InitData()
@@ -48,8 +50,8 @@ namespace ShotBall
             List<double> math = RowToList(Rows.MATH);
             List<double> disp = RowToList(Rows.DISP);
             List<List<double>> corrMatr = ReadCorrMatrix();
-
             target.Init(math, disp, corrMatr, vectorSize);
+            SetTabItems();
             return target;
         }
 
@@ -66,7 +68,7 @@ namespace ShotBall
 
             for (int i = 0; i < size; i++)
             {
-                dataGridView2[i, (int)Rows.MATH].Value = 0;
+                dataGridView2[i, (int)Rows.MATH].Value = 3;
             }
 
             for (int i = 0; i < size; i++)
@@ -89,7 +91,7 @@ namespace ShotBall
                 {
                     if (i == j)
                     {
-                        dataGridView1[j, i].Value = 1;
+                        dataGridView1[i, i].Value = 1;
                     }
                     else
                     {
@@ -97,6 +99,29 @@ namespace ShotBall
                     }
                 }
             }
+        }
+
+        public void SetTabItems()
+        {
+            chart1.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
+            chart1.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
+            chart1.ChartAreas[0].AxisX.IsMarksNextToAxis = false;
+            chart1.ChartAreas[0].AxisY.IsMarksNextToAxis = false;
+
+            chart1.Series[1].MarkerStyle = MarkerStyle.Circle;
+            chart1.Series[1].MarkerSize = 2;
+            chart1.Series[1].Color = Color.Red;
+            chart1.Legends[0].Enabled = false;
+        }
+
+        private Series newSeries()
+        {
+            Series ser = new Series();
+            ser.MarkerColor = Color.Green;
+            ser.MarkerStyle = MarkerStyle.Circle;
+            ser.MarkerSize = 5;
+            ser.ChartType = SeriesChartType.Point;
+            return ser;
         }
 
         private List<List<double>> ReadCorrMatrix()
@@ -158,6 +183,8 @@ namespace ShotBall
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
             InitData();
+            chart1.ChartAreas[0].AxisX.Interval = 30;
+            chart1.ChartAreas[0].AxisY.MajorTickMark.Enabled = false;
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -165,49 +192,138 @@ namespace ShotBall
 
         }
 
+        public double AbsMax(List<AnyPoint> pts)
+        {
+            double max = 0;
+            for (int i = 0; i < pts.Count; i++)
+            {
+                double m;
+                for (int j = 0; j < pts[i].points.Count; j++)
+                {
+                    m = Math.Abs(pts[i].points[j]);
+                    if (m > max)
+                    {
+                        max = m;
+                    }
+                }
+            }
+            max = Math.Truncate(max);
+            max += 1;
+            return max;
+        }
+
         private void CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
 
         }
 
-        private void Generate(object sender, EventArgs e)
+        public List<Distribution> DataGenerate()
         {
+            List<Distribution> pack = new List<Distribution>();
             MultidimNormDist target = InitTarget();
             int vectorDimensions = int.Parse(vec.Text);
             int startCount = int.Parse(start.Text);
             int st = int.Parse(step.Text);
             int endCount = int.Parse(end.Text);
-            double probability = double.Parse(prob.Text);
-            List<double> math;
-            
-            List<List<AnyPoint>> samples = new List<List<AnyPoint>>();
+            double realProb;
+            double teorProb = double.Parse(prob.Text);
+            List<double> realMath;
+            List<double> teorMath = RowToList(Rows.MATH);
+            List<double> teorDisp = RowToList(Rows.DISP);
+            List<List<double>> range = new List<List<double>>();
 
             int x = st;
+            int p = 0;
 
+            ChartsClear();
             for (int i = startCount; i < endCount; i += st)
             {
+                Distribution d = new Distribution();
                 List<AnyPoint> pts = SampleGenerate(i, target);
-
                 int count = 0;
                 for (int j = 0; j < i; j++)
                 {
-                    if (rand.NextDouble() <= probability)
+                    if (rand.NextDouble() <= teorProb)
                         count++;
                 }
-                DataCalculate(vectorDimensions, i, count, pts, out probability, out math);
-                List<double> disp = Dispersion(pts, vectorDimensions);
-                double sum = 0;
-                for (int k = 0; k < vectorDimensions; ++k)
-                {
-                    sum += Math.Pow(math[k], 2);  
-                }
-                chart1.Series[0].Points.AddXY(x, sum);
-               // samples.Add(pts);
+                DataCalculate(vectorDimensions, i, count, pts, out realProb, out realMath);
+                List<double> realDisp = Dispersion(pts, vectorDimensions);
+                double das = RowToList(Rows.MATH)[0];
+                range.Add(new List<double> { i, RowToList(Rows.MATH)[0] });
+
+                chart1.Series[1].Points.AddXY(x, realMath[0]);
+                chart3.Series[1].Points.AddXY(x, realDisp[0]);
+                chart2.Series[1].Points.AddXY(x, realProb);
                 x += st;
+                p++;
+
+                d.realMath = realMath;
+                d.teorMath = teorMath;
+                d.realDisp = realDisp;
+                d.teorDisp = teorDisp;
+                d.realProbability = realProb;
+                d.teorProbability = teorProb;
+                d.vectorSize = i;
+                d.points = pts;
+                d.range = range;
+                pack.Add(d);
+            }
+            return pack;
+        }
+
+        public void ChartsClear()
+        {
+            chart1.Series[0].Points.Clear();
+            chart1.Series[1].Points.Clear();
+            chart2.Series[0].Points.Clear();
+            chart2.Series[1].Points.Clear();
+            chart3.Series[0].Points.Clear();
+            chart3.Series[1].Points.Clear();
+        }
+
+        public void DrawHall(List<Distribution> dists, int mode)
+        {
+            List<double> real = new List<double>();
+            List<double> teor = new List<double>();
+            Chart chrt = new Chart();
+            for (int i = 0; i < dists.Count; ++i)
+            {
+                if (mode == 1) 
+                {
+                    real = dists[i].realMath;
+                    teor = dists[i].teorMath;
+                    chrt = chart1;
+                }
+                else if (mode == 2)
+                {
+                    real = dists[i].realDisp;
+                    teor = dists[i].teorDisp;
+                    chrt = chart3;
+                }
+                else if (mode == 3)
+                {
+                    real.Add(dists[i].realProbability);
+                    teor.Add(dists[i].teorProbability);
+                    chrt = chart2;
+                }
+                else
+                {
+                    return;
+                }
+
+                chrt.Series[0].Points.AddXY(dists[i].vectorSize, (teor[0] + teor[0] * 0.05), ((teor[0] - teor[0] * 0.05)));
             }
         }
 
-        public List<double> Dispersion(List<AnyPoint> pts, int vectorDimensions) //несмещенная дисперсия
+        private void Generate(object sender, EventArgs e)
+        {
+            List<Distribution> dists = DataGenerate();
+            DrawHall(dists, 1);
+            DrawHall(dists, 2);
+            DrawHall(dists, 3);
+        }
+
+        public List<double> Dispersion(List<AnyPoint> pts, int vectorDimensions) 
         {
             List<double> disp = new List<double>(vectorDimensions);
             double sumPow = 0.0, sum = 0.0;
@@ -262,7 +378,6 @@ namespace ShotBall
                     corr[i][k] = sum / count / corr[i][i] / corr[k][k];
                 }
             }
-            int s = 0;
         }
 
         public List<double> GetZeroList(int size)

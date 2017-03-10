@@ -182,7 +182,7 @@ namespace ShotBall
                 return pts;
         }
 
-        private double AbsMax(List<AnyPoint> pts)
+        public double AbsMax(List<AnyPoint> pts)
         {
             double max = 0;
             for (int i = 0; i < pts.Count; i++)

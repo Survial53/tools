@@ -59,6 +59,7 @@
             this.chart1.Location = new System.Drawing.Point(12, 12);
             this.chart1.Name = "chart1";
             this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
+            this.chart1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chart1.Size = new System.Drawing.Size(680, 680);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";

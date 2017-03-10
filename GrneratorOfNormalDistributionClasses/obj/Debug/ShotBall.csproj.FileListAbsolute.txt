@@ -70,3 +70,14 @@ C:\Users\юзер\Documents\GitHub\tools\GrneratorOfNormalDistributionClasses\ob
 C:\Users\юзер\Documents\GitHub\tools\GrneratorOfNormalDistributionClasses\obj\Debug\ShotBall.Form3.resources
 C:\Users\юзер\Documents\GitHub\tools\GrneratorOfNormalDistributionClasses\obj\Debug\ShotBall.Properties.Resources.resources
 C:\Users\юзер\Documents\GitHub\tools\GrneratorOfNormalDistributionClasses\obj\Debug\ShotBall.csproj.GenerateResource.Cache
+C:\Users\aeronet\Documents\GitHub\tools\GrneratorOfNormalDistributionClasses\bin\Debug\ShotBall.exe.config
+C:\Users\aeronet\Documents\GitHub\tools\GrneratorOfNormalDistributionClasses\obj\Debug\ShotBall.exe
+C:\Users\aeronet\Documents\GitHub\tools\GrneratorOfNormalDistributionClasses\obj\Debug\ShotBall.pdb
+C:\Users\aeronet\Documents\GitHub\tools\GrneratorOfNormalDistributionClasses\bin\Debug\ShotBall.exe
+C:\Users\aeronet\Documents\GitHub\tools\GrneratorOfNormalDistributionClasses\bin\Debug\ShotBall.pdb
+C:\Users\aeronet\Documents\GitHub\tools\GrneratorOfNormalDistributionClasses\obj\Debug\ShotBall.csprojResolveAssemblyReference.cache
+C:\Users\aeronet\Documents\GitHub\tools\GrneratorOfNormalDistributionClasses\obj\Debug\ShotBall.Form1.resources
+C:\Users\aeronet\Documents\GitHub\tools\GrneratorOfNormalDistributionClasses\obj\Debug\ShotBall.Form2.resources
+C:\Users\aeronet\Documents\GitHub\tools\GrneratorOfNormalDistributionClasses\obj\Debug\ShotBall.Form3.resources
+C:\Users\aeronet\Documents\GitHub\tools\GrneratorOfNormalDistributionClasses\obj\Debug\ShotBall.Properties.Resources.resources
+C:\Users\aeronet\Documents\GitHub\tools\GrneratorOfNormalDistributionClasses\obj\Debug\ShotBall.csproj.GenerateResource.Cache
